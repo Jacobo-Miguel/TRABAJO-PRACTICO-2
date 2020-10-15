@@ -31,14 +31,14 @@ int main(){
 	}
 	else{
 		do{
-			nuevo = (struct nodo*)malloc(sizeof(struct nodo));
+		nuevo = (struct nodo*)malloc(sizeof(struct nodo));
          	fflush(stdin);
         	printf("INGRESE EL NOMBRE: ");
         	scanf("%s",&nuevo->d.nombre);
 	        fflush(stdin);
 	        printf("INGRESE EL APELLIDO: ");
 	        scanf("%s",&nuevo->d.apellido);
-            fflush(stdin);
+                fflush(stdin);
    	        printf("INGRESE LA EDAD: ");
 	        scanf("%d",&nuevo->d.edad);
 	        fflush(stdin);
@@ -59,9 +59,7 @@ int main(){
             actual = inicio;
             if(actual != NULL){
                 while(actual != NULL){
-   	    	          printf("%s/%s/%d/%s/%s\n",actual->d.nombre,actual->d.apellido,actual->d.edad,actual->d.telefono,actual->d.mail);
    	    	          fwrite(&actual->d,sizeof(actual->d),1,contacto);
-   	    	          //free(actual);
    	    	          actual = actual->siguiente;	
 	            }
             }
