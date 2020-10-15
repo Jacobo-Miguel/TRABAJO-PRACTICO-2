@@ -19,14 +19,11 @@ struct nodo {
 	struct nodo *siguiente;
 };
 
-struct nodo *inicio, *nuevo ,*actual;
-void agregarpila();
-void mostrarpila();
-
 int main(){
 	FILE *contacto;
+	struct nodo *inicio, *actual, *nuevo;
 	char op;
-	inicio=nuevo=actual=NULL;
+	inicio=actual=nuevo=NULL;
 
 
     if((contacto=fopen("C:contactos.dat","wb"))==NULL){
@@ -34,13 +31,37 @@ int main(){
 	}
 	else{
 		do{
-		   agregarpila();
-           actual = (struct nodo*)malloc(sizeof(struct nodo));
-           actual = inicio;
-           if(actual != NULL){
+			nuevo = (struct nodo*)malloc(sizeof(struct nodo));
+         	fflush(stdin);
+        	printf("INGRESE EL NOMBRE: ");
+        	scanf("%s",&nuevo->d.nombre);
+	        fflush(stdin);
+	        printf("INGRESE EL APELLIDO: ");
+	        scanf("%s",&nuevo->d.apellido);
+            fflush(stdin);
+   	        printf("INGRESE LA EDAD: ");
+	        scanf("%d",&nuevo->d.edad);
+	        fflush(stdin);
+	        printf("INGRESE EL MAIL: ");
+	        scanf("%s",&nuevo->d.mail);
+	        fflush(stdin);
+	        printf("INGRESE EL TELEFONO: ");
+	        scanf("%s",&nuevo->d.telefono);
+	        fflush(stdin);
+	        printf("INGRESE EL ID DEL REGISTRO: ");
+	        scanf("%s",&nuevo->d.id);
+	        fflush(stdin);
+	        nuevo->siguiente = inicio;
+	        inicio = nuevo;
+	        fflush(stdin);
+
+            actual = (struct nodo*)malloc(sizeof(struct nodo));
+            actual = inicio;
+            if(actual != NULL){
                 while(actual != NULL){
    	    	          printf("%s/%s/%d/%s/%s\n",actual->d.nombre,actual->d.apellido,actual->d.edad,actual->d.telefono,actual->d.mail);
    	    	          fwrite(&actual->d,sizeof(actual->d),1,contacto);
+   	    	          //free(actual);
    	    	          actual = actual->siguiente;	
 	            }
             }
@@ -75,31 +96,4 @@ int main(){
 		fclose(contacto);
 	}
 	return 0;
-}
-
-void agregarpila(){
-	system("cls");
-	nuevo = (struct nodo*)malloc(sizeof(struct nodo));
-	fflush(stdin);
-	printf("INGRESE EL NOMBRE: ");
-	scanf("%s",&nuevo->d.nombre);
-	fflush(stdin);
-	printf("INGRESE EL APELLIDO: ");
-	scanf("%s",&nuevo->d.apellido);
-    fflush(stdin);
-   	printf("INGRESE LA EDAD: ");
-	scanf("%d",&nuevo->d.edad);
-	fflush(stdin);
-	printf("INGRESE EL MAIL: ");
-	scanf("%s",&nuevo->d.mail);
-	fflush(stdin);
-	printf("INGRESE EL TELEFONO: ");
-	scanf("%s",&nuevo->d.telefono);
-	fflush(stdin);
-	printf("INGRESE EL ID DEL REGISTRO: ");
-	scanf("%s",&nuevo->d.id);
-	fflush(stdin);
-	nuevo->siguiente = inicio;
-	inicio = nuevo;
-	fflush(stdin);
 }
