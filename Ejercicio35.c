@@ -21,12 +21,13 @@ struct nodo {
 
 int main(){
 	FILE *contacto;
+	struct datos aux;
 	struct nodo *inicio, *actual, *nuevo;
 	char op;
 	inicio=actual=nuevo=NULL;
 
 
-    if((contacto=fopen("C:contactos.dat","wb"))==NULL){
+    if((contacto=fopen("contactos.dat","wb"))==NULL){
     	printf("No se pudo abrir el archivo");
 	}
 	else{
@@ -54,44 +55,40 @@ int main(){
 	        nuevo->siguiente = inicio;
 	        inicio = nuevo;
 	        fflush(stdin);
-
-            actual = (struct nodo*)malloc(sizeof(struct nodo));
-            actual = inicio;
-            if(actual != NULL){
-                while(actual != NULL){
-   	    	          printf("%s/%s/%d/%s/%s\n",actual->d.nombre,actual->d.apellido,actual->d.edad,actual->d.telefono,actual->d.mail);
-   	    	          fwrite(&actual->d,sizeof(actual->d),1,contacto);
-   	    	          //free(actual);
-   	    	          actual = actual->siguiente;	
-	            }
-            }
-           else{
-            	printf("NO HAY ELEMENTOS EN LA PILA\n");
-           }
-		   
-		   printf("AGREGAR OTRA PERSONA?: ");
-		   scanf("%c",&op);
+		    printf("AGREGAR OTRA PERSONA?: ");
+		    scanf("%c",&op);
 			
 		}while((op=='S') || (op=='s'));
-		
+		actual = (struct nodo*)malloc(sizeof(struct nodo));
+        actual = inicio;
+        if(actual != NULL){
+            while(actual != NULL){
+   	    	          if(actual->d.edad>21){
+   	    	          	fwrite(&actual->d,sizeof(actual->d),1,contacto);
+					   }
+   	    	          actual = actual->siguiente;	
+	            }
+        }
+        else{
+          	printf("NO HAY ELEMENTOS EN LA PILA\n");
+        }
+		system("pause");
 		fclose(contacto);
 	}
 	
-	if((contacto=fopen("C:contactos.dat","rb"))==NULL){
+	if((contacto=fopen("contactos.dat","rb"))==NULL){
 		printf("No se pudo leer el archivo");
 	}
 	else{
 		system("cls");
-		fread(&actual->d,sizeof(actual->d),1,contacto);
+		fread(&aux,sizeof(aux),1,contacto);
 		printf("REGISTROS DE PERSONAS CON EDAD MAYOR A 21 ANOS\n");
 		printf("ID    |   NOMBRE   | APELLIDO |  EDAD  |    TELEFONO    |    MAIL\n");
 		printf("--------------------------------------------------------------------\n");
 		while(!feof(contacto)){
-			if(actual->d.edad>21){
 				
-				printf("%s |   %s   |  %s  |   %d   |   %s   |  %s\n",actual->d.id,actual->d.nombre,actual->d.apellido,actual->d.edad,actual->d.telefono,actual->d.mail);
-			}
-			fread(&actual->d,sizeof(actual->d),1,contacto);
+			printf("%s |   %s   |  %s  |   %d   |   %s   |  %s\n",aux.id,aux.nombre,aux.apellido,aux.edad,aux.telefono,aux.mail);
+			fread(&aux,sizeof(aux),1,contacto);
 		}
 		fclose(contacto);
 	}
