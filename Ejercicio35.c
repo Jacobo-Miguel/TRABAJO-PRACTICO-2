@@ -32,14 +32,14 @@ int main(){
 	}
 	else{
 		do{
-			nuevo = (struct nodo*)malloc(sizeof(struct nodo));
+		nuevo = (struct nodo*)malloc(sizeof(struct nodo));
          	fflush(stdin);
         	printf("INGRESE EL NOMBRE: ");
         	scanf("%s",&nuevo->d.nombre);
 	        fflush(stdin);
 	        printf("INGRESE EL APELLIDO: ");
 	        scanf("%s",&nuevo->d.apellido);
-            fflush(stdin);
+                fflush(stdin);
    	        printf("INGRESE LA EDAD: ");
 	        scanf("%d",&nuevo->d.edad);
 	        fflush(stdin);
@@ -55,24 +55,23 @@ int main(){
 	        nuevo->siguiente = inicio;
 	        inicio = nuevo;
 	        fflush(stdin);
-		    printf("AGREGAR OTRA PERSONA?: ");
-		    scanf("%c",&op);
+	        printf("AGREGAR OTRA PERSONA?: ");
+	        scanf("%c",&op);
 			
 		}while((op=='S') || (op=='s'));
 		actual = (struct nodo*)malloc(sizeof(struct nodo));
-        actual = inicio;
-        if(actual != NULL){
-            while(actual != NULL){
-   	    	          printf("%s/%s/%d/%s/%s\n",actual->d.nombre,actual->d.apellido,actual->d.edad,actual->d.telefono,actual->d.mail);
+                actual = inicio;
+                if(actual != NULL){
+                    while(actual != NULL){
    	    	          if(actual->d.edad>21){
    	    	          	fwrite(&actual->d,sizeof(actual->d),1,contacto);
-					   }
+		           }
    	    	          actual = actual->siguiente;	
 	            }
-        }
-        else{
-          	printf("NO HAY ELEMENTOS EN LA PILA\n");
-        }
+                }
+                else{
+          	   printf("NO HAY ELEMENTOS EN LA PILA\n");
+                }
 		system("pause");
 		fclose(contacto);
 	}
