@@ -63,6 +63,7 @@ int main(){
         actual = inicio;
         if(actual != NULL){
             while(actual != NULL){
+   	    	          printf("%s/%s/%d/%s/%s\n",actual->d.nombre,actual->d.apellido,actual->d.edad,actual->d.telefono,actual->d.mail);
    	    	          if(actual->d.edad>21){
    	    	          	fwrite(&actual->d,sizeof(actual->d),1,contacto);
 					   }
