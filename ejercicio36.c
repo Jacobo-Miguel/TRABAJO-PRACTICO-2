@@ -34,7 +34,7 @@ int main(){
 		printf("No se pudo abrir el archivo!!");
 	}
 	else{
-		printf("REGISTROS EN EL ARCHIVO CONTACTOS.DAT\n");
+	    printf("REGISTROS EN EL ARCHIVO CONTACTOS.DAT\n");
 	    fread(&aux,sizeof(aux),1,contacto);
 	    while(!feof(contacto)){
 	    	printf("%s |   %s   |  %s  |   %d   |   %s   |  %s\n",aux.id,aux.nombre,aux.apellido,aux.edad,aux.telefono,aux.mail);
@@ -55,7 +55,7 @@ int main(){
 		        ultimo = nuevo;
 	        }
 	        else{
-	        	r = primero;
+	            r = primero;
 	    	    while(1){
 	    	    	if(r->datos_t.nombre < nuevo->datos_t.nombre){
 	    			    nuevo->siguiente = primero;
@@ -81,7 +81,7 @@ int main(){
 				break;
 			}
 	    }
-		fread(&aux,sizeof(aux),1,contacto);
+	    fread(&aux,sizeof(aux),1,contacto);
 	}	
 	fclose(contacto);
 	mostrarlista(primero,contacto_t);
@@ -94,15 +94,14 @@ int main(){
 		printf("No se pudo abrir el archivo!!");
 	}
 	else{
-		printf("REGISTROS EN EL ARCHIVO CONTACTOS_ORDENADOS.DAT\n");
+	    printf("REGISTROS EN EL ARCHIVO CONTACTOS_ORDENADOS.DAT\n");
 	    printf("ID    |   NOMBRE   | APELLIDO |  EDAD  |    TELEFONO    |    MAIL\n");
 	    printf("--------------------------------------------------------------------\n");
 	    fread(&aux,sizeof(aux),1,contacto_t);
-    	while(!feof(contacto_t)){
+    	    while(!feof(contacto_t)){
 		    printf("%s     |   %s   |  %s  |   %d   |   %s   |  %s\n",aux.id,aux.nombre,aux.apellido,aux.edad,aux.telefono,aux.mail);	
 		    fread(&aux,sizeof(aux),1,contacto_t);
-    	}
-    	
+    	    }
 	}
 	fclose(contacto_t);
 	return 0;
@@ -116,7 +115,7 @@ void mostrarlista(nodo *primero, FILE *contacto_t){
 		while(primero != NULL){
 			printf("%s |   %s   |  %s  |   %d   |   %s   |  %s\n",actual->datos_t.id,actual->datos_t.nombre,actual->datos_t.apellido,actual->datos_t.edad,actual->datos_t.telefono,actual->datos_t.mail);
 			fwrite(&actual->datos_t,sizeof(actual->datos_t),1,contacto_t);
-	    	actual = actual->siguiente;
+	    	        actual = actual->siguiente;
 		}
 	}
 	else{
