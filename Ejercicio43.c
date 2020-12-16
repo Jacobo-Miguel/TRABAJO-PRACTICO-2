@@ -67,7 +67,7 @@ struct pila * Apilar(struct pila *p,repuestos_t rep){
 	    	aux->l=p;
 	    	p=aux;
     	}
-    fread(&rep,sizeof(rep),1,repuesto);	
+    fread(&rep,sizeof(repuestos_t),1,repuesto);	
 	}
 	fclose(repuesto);
 	return p;
