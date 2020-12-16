@@ -48,7 +48,7 @@ struct pila * Apilar(struct pila *p,repuestos_t rep){
 		printf("No se pudo encontrar el archivo");
 	}
 	
-	fread(&rep,sizeof(rep),1,repuesto);
+	fread(&rep,sizeof(repuestos_t),1,repuesto);
 	while(!feof(repuesto)){
 		struct pila *aux=(struct pila *)malloc(sizeof(struct pila));
 	
