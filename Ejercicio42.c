@@ -48,7 +48,7 @@ void Encolar(struct cola *p,struct cola *u, repuestos_t rep){
 	if((rf1=fopen("stock2.txt","rt+"))==NULL){
 		printf("No se encontro el archivo");
 	}
-   	fread(&rep,sizeof(rep),1,rp);
+   	fread(&rep,sizeof(repuestos_t),1,rp);
     while(!feof(rp)){
       if(rep.partNumber & (1<<5) && rep.partNumber & (1<<3)){
       	rep1.partNumber=aux->repuestos.partNumber;
@@ -64,16 +64,16 @@ void Encolar(struct cola *p,struct cola *u, repuestos_t rep){
 	    	aux->l=NULL;
 	    	u=aux;
 	    }
-	    fwrite(&rep,sizeof(rep),1,rf);
+	    fwrite(&rep,sizeof(repuestos_t),1,rf);
       }
-   	fread(&rep,sizeof(rep),1,rp);
+   	fread(&rep,sizeof(repuestos_t),1,rp);
 	}
 	fclose(rp);
 	fclose(rf);
 	struct cola *aux1 = (struct cola*)malloc(sizeof(struct cola));
 	aux1=u;
 	while(aux1!=NULL){
-		fwrite(&rep1,sizeof(rep1),1,rf1);
+		fwrite(&rep1,sizeof(repuestos_t),1,rf1);
 		aux1=aux1->l;
 	}	
 	fclose(rf1);
