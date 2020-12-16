@@ -53,7 +53,7 @@ int main(){
 	if((rp=fopen("stock.txt","rt+"))==NULL){
 		printf("No se encontro el archivo");
 	}
-	fwrite(&rep,sizeof(rep),1,rp);
+	fwrite(&rep,sizeof(repuestos_t),1,rp);
 	fclose(rp);
 	return 0;
 }
