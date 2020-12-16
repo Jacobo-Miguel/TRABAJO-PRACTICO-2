@@ -59,7 +59,7 @@ void crearCola(struct cola *p,struct cola *u,repuestos_t1 rep1){
 	if((rp=fopen("stock.txt","rt+"))==NULL){
 		printf("No se encontro el archivo ");
 	}
-	fread(&rep1,sizeof(rep1),1,rp);
+	fread(&rep1,sizeof(repuestos_t),1,rp);
 	printf("Ingrese el PartNumber: ");
 	scanf("%l",&clave);
 	while(!feof(rp)){
@@ -85,6 +85,6 @@ void crearCola(struct cola *p,struct cola *u,repuestos_t1 rep1){
 	            }
 			}
 		}
-		fread(&rep1,sizeof(rep1),1,rp);	
+		fread(&rep1,sizeof(repuestos_t),1,rp);	
 	}
 }
